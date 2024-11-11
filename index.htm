@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Qr-code-sign-on-transparent-background-PNG.png">
+
+</head>
+<body>
+    <div class="container">
+        <p>Type to Generate QR</p>
+        <input type="text" placeholder="Enter line or link" id="input" autofocus autocomplete="on">
+        <div class="img">
+            <img src="" alt="">
+        </div>
+        <button id="Generate" onclick="generate()"><i class="fa-solid fa-qrcode"></i> Generate QR</button>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let img = document.getElementsByTagName("img");
+        let div = document.getElementsByClassName("img")[0];
+        let button = document.getElementById("Generate");
+
+         function generate() {
+            if (input.value != ""){
+                img[0].src = " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+input.value;
+                div.classList.add("showimg")
+                input.value = ""
+            } else{
+                input.classList.add("shaker");
+                img[0].src = ""
+                setTimeout(()=>{
+                    input.classList.remove("shaker")
+                },2000)
+            }
+            
+
+         }
+         
+    </script>
+</body>
+</html>
